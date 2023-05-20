@@ -18,12 +18,14 @@ function App() {
       query: search,
     }
     fetch('http://localhost:3001/', {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify(data),
-    }).then((response) => setProducts(response.json().data))
+    }).then((response) => response.json()).then((data) => setProducts(data));
   }
 
   const handleSearch = () => {
@@ -94,7 +96,7 @@ function App() {
 
       <section>
         { products.length > 0 && (
-            products.map((product) => (<ProductCard product={product} />))
+            products.map((product, index) => (<ProductCard product={product} key={index} />))
         )}
 
       </section>          
