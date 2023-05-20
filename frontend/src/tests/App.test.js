@@ -1,5 +1,6 @@
-import { cleanup, getByRole, render, screen, fireEvent } from '@testing-library/react';
+import { cleanup, getByRole, render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
 import App from '../App';
 import mercadoLivreTvSamsungLed from './mocks/productsMock';
 
@@ -25,11 +26,11 @@ describe('Tests if the application is rendered correctly', () => {
   });
 
   it('Test if the free market and categories select work', async () => {
-    global.fetch = jest.fn(() => Promise.resolve(({
-      json: () => Promise.resolve(mercadoLivreTvSamsungLed)
-    })))
+    jest.spyOn(global, 'fetch').mockResolvedValue({
+      json: jest.fn().mockResolvedValue(mercadoLivreTvSamsungLed)
+    })
 
-    render(<App />);
+      render(<App />);
 
     const SELECT_WEB_COLUMN = screen.getByTestId("web-column-filter");
     const SELECT_CATEGORY_COLUMN = screen.getByTestId("category-column-filter");
@@ -42,7 +43,9 @@ describe('Tests if the application is rendered correctly', () => {
     userEvent.type(INPUT_VALUE, 'Samsung led');
     userEvent.click(BTN_FILTER);
 
-    expect(await screen.findAllByTestId('product-card')).toHaveLength(3);  
+    await waitFor(() => {
+      expect( screen.getAllByTestId('product-card')).toHaveLength(3);  
+    });
     
   })
 })
