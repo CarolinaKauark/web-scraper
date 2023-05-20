@@ -10,6 +10,13 @@ function App() {
   const [categoryColumn, setcategoryColumn] = useState('');
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const cleanState = () => {
+    setWebColumn('');
+    setcategoryColumn('');
+    setSearch('');
+  }
 
   const getData = async () => {
     const data = {
@@ -25,10 +32,15 @@ function App() {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify(data),
-    }).then((response) => response.json()).then((data) => setProducts(data));
+    }).then((response) => response.json()).then((data) => {
+      setProducts(data);
+      setLoading(false)
+      cleanState();
+    });
   }
 
   const handleSearch = () => {
+    setLoading(true);
     getData();
   }
 
@@ -95,6 +107,7 @@ function App() {
       </section>
 
       <section>
+        {loading && (<div>Carregando</div>)}
         { products.length > 0 && (
             products.map((product, index) => (<ProductCard product={product} key={index} />))
         )}
