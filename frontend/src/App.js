@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ProductCard from './components/ProductCard';
 
 function App() {
-  const categoriesList = [ 'refrigerator', 'tv', 'mobile']
+  const categoriesList = [ 'Geladeira', 'Tv', 'Eletrodomesticos', 'Celular']
   const webList = [ 'Web', 'Todas', 'Mercado Livre', 'Buscapé']
 
   const [webColumn, setWebColumn] = useState('');
@@ -45,16 +45,17 @@ function App() {
   }
 
   return (
-    <main>
-      <section>
+    <main class='flex-center'>
+      <h1 class='logo'>Web Scraper</h1>
 
-        <div>
+      <section class='section-selectors'>
+        <div class='div-selectors'>
           <select
+            class='input-select'
             data-testid="web-column-filter"
             name="web-column"
             id="web-column"
             value={ webColumn }
-            // onClick={ (e) => setColumn(e.target.value) }
             onChange={ (e) => setWebColumn(e.target.value) }
           >
             {webList
@@ -69,6 +70,7 @@ function App() {
           </select>
 
           <select
+            class='input-select'
             data-testid="category-column-filter"
             name="category-column"
             id="category-column"
@@ -88,8 +90,9 @@ function App() {
           </select>
         </div>
 
-        <div>
+        <div class='div-selectors'>
           <input 
+            class='input-input'
             data-testid="value-filter"
             type="search" 
             id="value-filter"
@@ -99,6 +102,7 @@ function App() {
           />
 
           <button
+            class='search-button'
             data-testid="button-filter"
             type='button'
             onClick={() => handleSearch()}
@@ -106,8 +110,14 @@ function App() {
         </div>        
       </section>
 
-      <section>
-        {loading && (<div>Carregando</div>)}
+      {loading && (
+        <div>
+          <div class='loader'></div>
+          <p className='loading'>Carregando...</p>
+        </div>
+      )}
+
+      <section class='card-section'>
         { products.length > 0 && (
             products.map((product, index) => (<ProductCard product={product} key={index} />))
         )}

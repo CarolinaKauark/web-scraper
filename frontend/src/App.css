@@ -2,37 +2,119 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.flex-center {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-top: 3vh;
+}
+
+.logo {
+  margin-bottom: 2.5vh;
+  font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 3.5rem;
+    line-height: 120%;
+    text-transform: uppercase;
+
+    /* background: linear-gradient(97.54deg, #F857A6 1.17%, #FF5858 99.42%); */
+    background: linear-gradient(#1289DB 8.55%, #72CA80 99.42%, #F9F9F9 );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-selectors {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.div-selectors {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-select {
+  width: 48%;
+  height: 3vh;
+  border-radius: 5px; 
+  background-color: white;
+  border: 2px solid #1289DB;
+  margin-bottom: 1.5rem;
+  font-family: 'Montserrat';
+  font-weight: 500;  
+}
+
+.input-input {
+  padding: 1%;
+  width: 79%;
+  height: 3vh;
+  border-radius: 5px; 
+  background-color: white;
+  border: 2px solid #1289DB;
+  margin-bottom: 1.5rem;
+  font-size: 1.0rem;
+  font-family: 'Montserrat';
+  font-weight: 200;  
+}
+
+.search-button {
+  width: 29%;
+  height: 3vh;
+  border-radius: 5px; 
+  background: linear-gradient(#1289DB 8.55%, #72CA80 99.42%, #F9F9F9 );
   color: white;
+  border-style: none;
+  margin-bottom: 1.5rem;  
 }
 
-.App-link {
-  color: #61dafb;
+.search-button:hover {
+   opacity: 0.8;
+    box-shadow: 0px 163.333px 130.667px rgba(0, 0, 0, 0.07), 0px 68.2368px 54.5894px rgba(0, 0, 0, 0.0503198), 0px 36.4826px 29.1861px rgba(0, 0, 0, 0.0417275), 0px 20.4519px 16.3615px rgba(0, 0, 0, 0.035), 0px 10.8618px 8.68947px rgba(0, 0, 0, 0.0282725), 0px 4.51985px 3.61588px rgba(0, 0, 0, 0.0196802);
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.loader {
+  /* position: absolute; */
+  background: conic-gradient(#1289DB 8.55%, #72CA80 99.42%, #F9F9F9 );
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin 2s linear infinite;
+}
+
+.loader::before {
+  content: '';
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+  background-color: #F9F9F9;
+}
+
+.loading {
+  font-family: 'Montserrat';
+  font-weight: 500;  
+  align-self: center;
+  margin-top: 0.5rem;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+} 
+
+.card-section {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

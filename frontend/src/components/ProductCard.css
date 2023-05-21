@@ -1,0 +1,62 @@
+.product-card {
+    border: 0.2rem solid;
+    border-image-slice: 1;
+    border-radius: 10px;
+    border-image-source: linear-gradient(#1289DB 8.55%, #72CA80 99.42%, #F9F9F9 );
+    width: 28%;
+    margin: 0.5rem 0 1rem 0;
+    box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 0.5rem;
+}
+
+.div-img {
+    max-width: 90%;
+}
+
+.img-products {
+    max-width: 90%;
+
+}
+
+.description {
+    font-size: 1.3rem;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    margin: 0.2rem;  
+}
+
+.price-button {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+    align-content: center;
+}
+
+.price {
+    font-size: 1.0rem;
+    font-family: 'Montserrat';
+    font-weight: 600;  
+}
+
+.card-button {
+    width: 29%;
+    height: 3vh;
+    border-radius: 5px; 
+    background: linear-gradient(#1289DB 8.55%, #72CA80 99.42%, #F9F9F9 );
+    color: white;
+    border-style: none;
+    margin-bottom: 1.5rem;  
+}
+
+.card-button:hover {
+    opacity: 0.8;
+    box-shadow: 0px 163.333px 130.667px rgba(0, 0, 0, 0.07), 0px 68.2368px 54.5894px rgba(0, 0, 0, 0.0503198), 0px 36.4826px 29.1861px rgba(0, 0, 0, 0.0417275), 0px 20.4519px 16.3615px rgba(0, 0, 0, 0.035), 0px 10.8618px 8.68947px rgba(0, 0, 0, 0.0282725), 0px 4.51985px 3.61588px rgba(0, 0, 0, 0.0196802);
+    cursor: pointer;
+}
