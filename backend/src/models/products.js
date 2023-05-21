@@ -4,14 +4,15 @@ const {
 } = require('mongoose');
 
 const ProdutoSchema = new Schema ({
-    photo: { type: String, required: true },
-    description: { type: String, required: true },
+    photo: { type: String },
+    description: { type: String },
     category: { type: String, required: true },
-    price: { type: Number, required: true },
-    website: { type: String, required: true },
+    price: { type: Number },
+    website: { type: String },
+    query: { type: String, required: true}
 });
 
-const MercadoLivre = model('Mercado', ProdutoSchema);
-const Buscape = model('buscapé', ProdutoSchema);
+const MercadoLivre = model('mercado', ProdutoSchema);
+const Buscape = model('buscape', ProdutoSchema);
 
 module.exports = { MercadoLivre, Buscape };

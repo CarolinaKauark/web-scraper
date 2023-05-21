@@ -50,18 +50,19 @@ const getMLProducts = async (category, query) => {
   let products = readHTML(HTML, category, query);
 
   allProducts = [...allProducts, ...products]
-
-  while(nextPage(HTML)) {
-    HTML = await webScraper(nextPage(HTML), category, query);
-    readHTML(HTML, category, query);
-
+  let page = 0;
+  while(nextPage(HTML) && page <= 3) {
+    HTML = await webScraper(nextPage(HTML));
+    products = readHTML(HTML, category, query);
+    console.log('No while', products.length);  
     allProducts = [...allProducts, ...products]
+    page += 1;
   }
 
-
+  console.log(allProducts.length);
   return allProducts;
 }
 
-getMLProducts('celular', 'iphone');
+// getMLProducts('celular', 'iphone');
 
 module.exports = getMLProducts;

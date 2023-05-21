@@ -52,17 +52,24 @@ const getBCPProducts = async (category, query) => {
   let products = readHTML(HTML, category, query);
   allProducts = [...allProducts, ...products];
 
-  while(nextPage(HTML)) {
-    HTML = await webScraper(`https://www.buscape.com.br${nextPage(HTML)}`, category, query);
-    products = readHTML(HTML, category, query);
+  console.log('passou aqui getBCPPRODUCTS');
+  let page = 0;
 
+  while(nextPage(HTML) && page <= 3) {
+    console.log('entrou no while');
+    let next = nextPage(HTML);
+    HTML = await webScraper(`https://www.buscape.com.br${next}`);
+    products = readHTML(HTML, category, query);
+    console.log('depois de ler os produtos');
     allProducts = [...allProducts, ...products]
+    page += 1;
   }
 
+  console.log(allProducts.length);
 
   return allProducts;
 }
 
-getBCPProducts('celular', 'iphone');
+// getBCPProducts('celular', 'iphone');
 
 module.exports = getBCPProducts;
