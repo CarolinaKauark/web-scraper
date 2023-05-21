@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ProductCard from './components/ProductCard';
 
 function App() {
-  const categoriesList = [ 'Geladeira', 'Tv', 'Eletrodomesticos', 'Celular']
+  const categoriesList = [ 'Categorias', 'Geladeira', 'Tv', 'Eletrodomesticos', 'Celular']
   const webList = [ 'Web', 'Todas', 'Mercado Livre', 'Buscapé']
 
   const [webColumn, setWebColumn] = useState('');
@@ -109,6 +109,10 @@ function App() {
           >Search</button>
         </div>        
       </section>
+
+      { (products.length === 0 && !loading) && <div>
+          <p className='loading'>Total de 0 produtos. Faça uma busca!</p>
+        </div>}
 
       {loading && (
         <div>
