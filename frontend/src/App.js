@@ -4,7 +4,7 @@ import ProductCard from './components/ProductCard';
 
 function App() {
   const categoriesList = [ 'refrigerator', 'tv', 'mobile']
-  const webList = [ 'Web', 'Todas', 'Mercado Livre', 'Bucapé']
+  const webList = [ 'Web', 'Todas', 'Mercado Livre', 'Buscapé']
 
   const [webColumn, setWebColumn] = useState('');
   const [categoryColumn, setcategoryColumn] = useState('');
