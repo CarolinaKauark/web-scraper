@@ -80,6 +80,10 @@
     cursor: pointer;
 }
 
+.red {
+  color: red;
+}
+
 .loader {
   /* position: absolute; */
   background: conic-gradient(#1289DB 8.55%, #72CA80 99.42%, #F9F9F9 );
