@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './ProductCard.css';
 
 export default function ProductCard({ product }) {
-  const { photo, description, category, price, website } = product;
+  const { photo, description, price, website } = product;
 
   return (
     <article data-testid='product-card' class='product-card'>
