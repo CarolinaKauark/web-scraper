@@ -54,12 +54,10 @@ const getMLProducts = async (category, query) => {
   while(nextPage(HTML) && page <= 3) {
     HTML = await webScraper(nextPage(HTML));
     products = readHTML(HTML, category, query);
-    console.log('No while', products.length);  
     allProducts = [...allProducts, ...products]
     page += 1;
   }
 
-  console.log(allProducts.length);
   return allProducts;
 }
 
