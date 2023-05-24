@@ -25,7 +25,6 @@ const readHTML = (HTML, category, query) => {
     const value = p.text();
     const price = value.split(' ').pop();
 
-    // const obj = { website, photo, description, price }
     const obj = { website, description, price, category, query, photo }
     products.push(obj);
   })
@@ -50,22 +49,17 @@ const getBCPProducts = async (category, query) => {
   const URL =  `https://www.buscape.com.br/${category}/${query}`;
   let HTML = await webScraper(URL);
   let products = readHTML(HTML, category, query);
-  allProducts = [...allProducts, ...products];
 
-  console.log('passou aqui getBCPPRODUCTS');
+  allProducts = [...allProducts, ...products];
   let page = 0;
 
   while(nextPage(HTML) && page <= 3) {
-    console.log('entrou no while');
     let next = nextPage(HTML);
     HTML = await webScraper(`https://www.buscape.com.br${next}`);
     products = readHTML(HTML, category, query);
-    console.log('depois de ler os produtos');
     allProducts = [...allProducts, ...products]
     page += 1;
   }
-
-  console.log(allProducts.length);
 
   return allProducts;
 }

@@ -1,6 +1,5 @@
-import { cleanup, getByRole, render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { cleanup, render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 import App from '../App';
 import mercadoLivreTvSamsungLed from './mocks/productsMock';
 
@@ -37,15 +36,15 @@ describe('Tests if the application is rendered correctly', () => {
     const INPUT_VALUE = screen.getByTestId('value-filter');
     const BTN_FILTER = screen.getByTestId('button-filter');
 
-    fireEvent.change(SELECT_WEB_COLUMN, {target: {value: 'mercado-livre' }});
-    fireEvent.change(SELECT_CATEGORY_COLUMN, {target: {value: 'tv' }});
+    fireEvent.change(SELECT_WEB_COLUMN, {target: {value: 'Mercado Livre' }});
+    fireEvent.change(SELECT_CATEGORY_COLUMN, {target: {value: 'Tv' }});
     
     userEvent.type(INPUT_VALUE, 'Samsung led');
+
     userEvent.click(BTN_FILTER);
 
     await waitFor(() => {
       expect( screen.getAllByTestId('product-card')).toHaveLength(3);  
-    });
-    
+    });    
   })
 })

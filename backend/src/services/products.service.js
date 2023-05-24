@@ -11,15 +11,17 @@ const handleBCPProduct = async ({category, query}) => {
   });
 
   if(!products.length) {
-    console.log(' 1 dentro do if', products.length);
 
     products = await getBCPProducts(category, query);
-    console.log('2 dentro do if', products.length);
 
-    await Buscape.create(products);
-    console.log('adicionou no db');
+    /* NOTE: I tried to store the data from Buscapé in the database, but it didn't work
+    I used the following implementations */
+
+    // await Promise.all(products.map(async (product) => await Buscape.create(product)))
+    // await Buscape.create(products);
+
   }
-  console.log(products.length);
+
   return products;
 }
 
@@ -32,11 +34,9 @@ const handleMLProduct = async ({category, query}) => {
     ] 
   });
 
-  console.log('handle ML', products);
 
   if(!products.length) {
     products = await getMLProducts(category, query);
-    console.log('get products from web scraper');
     await MercadoLivre.create(products);
   }
 
@@ -45,10 +45,9 @@ const handleMLProduct = async ({category, query}) => {
 
 const getProducts = async({ web, category, query}) => {
   let products;
-  console.log('service', web);
+
   if(web === 'Mercado Livre') {
     products = await handleMLProduct({ category, query });
-    console.log('service if', products.length);
     return products;
   } else if(web === 'Buscapé') {
     products = await handleBCPProduct({ category, query });

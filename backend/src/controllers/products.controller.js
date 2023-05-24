@@ -1,4 +1,4 @@
-const productsService = require("../service/products.service");
+const productsService = require("../services/products.service");
 
 const getProducts = async (req, res, next) => {
   try {
@@ -9,9 +9,8 @@ const getProducts = async (req, res, next) => {
       category: category.toLowerCase(),
       query: query.toLowerCase(),
     }
-    console.log('controller');
+
     const products = await productsService.getProducts(payload);
-    console.log('controller pos service', products.length)
 
     return res.status(200).json(products); 
   } catch (err) {

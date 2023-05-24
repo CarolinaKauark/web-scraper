@@ -11,6 +11,7 @@ function App() {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const cleanState = () => {
     setWebColumn('');
@@ -19,13 +20,14 @@ function App() {
   }
 
   const getData = async () => {
+
     const data = {
       web: webColumn,
       category: categoryColumn,
       query: search,
     }
     fetch('http://localhost:3001/', {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: "POST", 
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -36,12 +38,21 @@ function App() {
       setProducts(data);
       setLoading(false)
       cleanState();
-    });
+    }).catch(() => {
+      setProducts([]);
+      setLoading(false);
+    })
   }
 
   const handleSearch = () => {
-    setLoading(true);
-    getData();
+    
+    if(!(webColumn && categoryColumn && search)) {
+      setErrorMessage(true);
+    } else {
+      setErrorMessage(false);
+      setLoading(true);
+      getData();
+    }
   }
 
   return (
@@ -75,7 +86,6 @@ function App() {
             name="category-column"
             id="category-column"
             value={ categoryColumn }
-            // onClick={ (e) => setColumn(e.target.value) }
             onChange={ (e) => setcategoryColumn(e.target.value) }
           >
             {categoriesList
@@ -109,6 +119,10 @@ function App() {
           >Search</button>
         </div>        
       </section>
+
+      {
+        errorMessage && ( <p className='loading red'>*Preencha todos os campos</p>)
+      }
 
       { (products.length === 0 && !loading) && <div>
           <p className='loading'>Total de 0 produtos. Faça uma busca!</p>
