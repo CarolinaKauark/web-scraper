@@ -14,6 +14,12 @@ app.use(cors(
   })
 );
 
+//bigger time out to allow time to the webscraper
+app.use(function(req, res, next) {
+  res.setTimeout(300);
+  next();
+});
+
 app.use(router);
 
 app.use(errorMiddleware);
