@@ -26,7 +26,8 @@ function App() {
       category: categoryColumn,
       query: search,
     }
-    fetch('http://localhost:3001/', {
+    //if you are running local, please enter change this url for localhost
+    fetch('https://web-scraper-nd51-git-main-carolinakauark.vercel.app/', {
       method: "POST", 
       mode: "cors",
       headers: {
