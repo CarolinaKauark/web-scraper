@@ -7,12 +7,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(cors(
-  {
-    origin: true,
-    credentials: true
-  })
-);
+// app.use(cors(
+//   {
+//     origin: true,
+//     credentials: true
+//   })
+// );
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', '*');
+    app.use(cors());
+    next();
+});
 
 //bigger time out to allow time to the webscraper
 app.use(function(req, res, next) {
